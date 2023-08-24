@@ -1,0 +1,19 @@
+name: Building
+
+on:
+  push:
+    branches: [ "main" ]
+ 
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: docker login
+      run: docker login -u lucascm10 -p dckr_pat_3SNPXz3-WlU0-pt97bH7sLGjhu8
+    - name: build image
+      run: docker build -t lucascm10/study-api .
+    - name: push to docker
+      run: docker push lucascm10/study-api
